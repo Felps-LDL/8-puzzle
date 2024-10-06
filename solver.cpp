@@ -30,6 +30,7 @@ int heur(vvi matriz);
 vvi troca(vvi atual, int i, int j, int x, int y);
 bool visitei(vvi matriz);
 pii procura(vvi matriz, int target);
+vector<vvi> possiveis_estados(vvi matriz);
 void mostra(vvi matriz);
 void mostra_caminho(Node *atual);
 void bfs();
@@ -146,7 +147,7 @@ void mostra_caminho(Node *atual)
     }
 }
 
-vector<vvi> moves(vvi matriz)
+vector<vvi> possiveis_estados(vvi matriz)
 {
     vector<vvi> swaps;
 
@@ -181,9 +182,7 @@ void best_first()
             break;
         }
 
-        vector<vvi> possiveis_estados = moves(atual->estado);
-
-        for(auto estado : possiveis_estados)
+        for(auto estado : possiveis_estados(atual->estado))
         {
             if(!visitei(estado))
             {
@@ -215,9 +214,7 @@ void bfs()
             break;
         }
 
-        vector<vvi> possiveis_estados = moves(atual->estado);
-
-        for(auto estado : possiveis_estados)
+        for(auto estado : possiveis_estados(atual->estado))
         {
             if(!visitei(estado))
             {
@@ -249,9 +246,7 @@ void dfs()
             break;
         }
 
-        vector<vvi> possiveis_estados = moves(atual->estado);
-
-        for(auto estado : possiveis_estados)
+        for(auto estado : possiveis_estados(atual->estado))
         {
             if(!visitei(estado))
             {
@@ -283,9 +278,7 @@ void busca_gulosa()
             break;
         }
 
-        vector<vvi> possiveis_estados = moves(atual->estado);
-
-        for(auto estado : possiveis_estados)
+        for(auto estado : possiveis_estados(atual->estado))
         {
             if(!visitei(estado))
             {
