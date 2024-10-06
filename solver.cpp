@@ -181,14 +181,13 @@ void best_first()
             break;
         }
 
-        vector<vvi> swaps = moves(atual->estado);
+        vector<vvi> possiveis_estados = moves(atual->estado);
 
-        for(auto matriz : swaps)
+        for(auto estado : possiveis_estados)
         {
-            if(!visitei(matriz))
+            if(!visitei(estado))
             {
-                Node *novo = new Node(heur(matriz), matriz, atual, atual->level + 1);
-
+                Node *novo = new Node(heur(estado), estado, atual, atual->level + 1);
                 fila.push({novo->h + novo->level, novo});
             }
         }
@@ -216,13 +215,13 @@ void bfs()
             break;
         }
 
-        vector<vvi> swaps = moves(atual->estado);
+        vector<vvi> possiveis_estados = moves(atual->estado);
 
-        for(auto matriz : swaps)
+        for(auto estado : possiveis_estados)
         {
-            if(!visitei(matriz))
+            if(!visitei(estado))
             {
-                Node *novo = new Node(matriz, atual);
+                Node *novo = new Node(estado, atual);
                 fila.push(novo);
             }
         }
@@ -250,13 +249,13 @@ void dfs()
             break;
         }
 
-        vector<vvi> swaps = moves(atual->estado);
+        vector<vvi> possiveis_estados = moves(atual->estado);
 
-        for(auto matriz : swaps)
+        for(auto estado : possiveis_estados)
         {
-            if(!visitei(matriz))
+            if(!visitei(estado))
             {
-                Node *novo = new Node(matriz, atual);
+                Node *novo = new Node(estado, atual);
                 pilha.push(novo);
             }
         }
@@ -284,14 +283,13 @@ void busca_gulosa()
             break;
         }
 
-        vector<vvi> swaps = moves(atual->estado);
+        vector<vvi> possiveis_estados = moves(atual->estado);
 
-        for(auto matriz : swaps)
+        for(auto estado : possiveis_estados)
         {
-            if(!visitei(matriz))
+            if(!visitei(estado))
             {
-                Node *novo = new Node(heur(matriz), matriz, atual, atual->level + 1);
-
+                Node *novo = new Node(heur(estado), estado, atual, atual->level + 1);
                 fila.push({novo->h, novo});
             }
         }
