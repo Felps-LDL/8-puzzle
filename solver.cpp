@@ -27,11 +27,11 @@ struct Node
 
 void setar();
 int heur(vvi matriz);
-vvi troca(vvi atual, int i, int j, int x, int y);
 bool visitei(vvi matriz);
 pii procura(vvi matriz, int target);
+vvi troca(vvi atual, int i, int j, int x, int y);
 vector<vvi> possiveis_estados(vvi matriz);
-void mostra(vvi matriz);
+void mostra_estado(vvi matriz);
 void mostra_caminho(Node *atual);
 void bfs();
 void dfs();
@@ -84,6 +84,16 @@ int heur(vvi matriz)
     return h;
 }
 
+bool visitei(vvi matriz)
+{
+    for(auto estado : visitados)
+    {
+        if(estado == matriz) return true;
+    }
+
+    return false;
+}
+
 pii procura(vvi matriz, int target)
 {
     for(int i = 1; i <= 3; i++)
@@ -106,16 +116,6 @@ vvi troca(vvi matriz, int i, int j, int x, int y)
     return matriz;
 }
 
-bool visitei(vvi matriz)
-{
-    for(auto estado : visitados)
-    {
-        if(estado == matriz) return true;
-    }
-
-    return false;
-}
-
 void mostra_estado(vvi matriz)
 {
     for(int i = 1; i <= 3; i++)
@@ -129,9 +129,8 @@ void mostra_estado(vvi matriz)
 
 void mostra_caminho(Node *atual)
 {
-    int passo = 1;
-
     vector<vvi> caminho;
+    int passo = 1;
 
     while(atual != NULL)
     {
@@ -150,7 +149,6 @@ void mostra_caminho(Node *atual)
 vector<vvi> possiveis_estados(vvi matriz)
 {
     vector<vvi> swaps;
-
     pii pos = procura(matriz, 0);
 
     swaps.push_back(troca(matriz, pos.f, pos.s, pos.f - 1, pos.s));
