@@ -164,7 +164,6 @@ void best_first()
 {
     priority_queue<pino, vector<pino>, greater<pino>> fila;
     Node *origem = new Node(heur(inicial), inicial, NULL, 0);
-
     fila.push({origem->h, origem});
 
     while(!fila.empty())
@@ -199,15 +198,12 @@ void best_first()
 void bfs()
 {
     queue<Node*> fila;
-
     Node* origem = new Node(inicial, NULL);
-
     fila.push(origem);
 
     while(!fila.empty())
     {
         Node* atual = fila.front();
-
         fila.pop();
         
         if(visitei(atual->estado)) continue;
@@ -227,7 +223,6 @@ void bfs()
             if(!visitei(matriz))
             {
                 Node *novo = new Node(matriz, atual);
-
                 fila.push(novo);
             }
         }
@@ -237,15 +232,12 @@ void bfs()
 void dfs()
 {
     stack<Node*> pilha;
-
     Node* origem = new Node(inicial, NULL);
-
     pilha.push(origem);
 
     while(!pilha.empty())
     {
         Node* atual = pilha.top();
-
         pilha.pop();
         
         if(visitei(atual->estado)) continue;
@@ -265,7 +257,6 @@ void dfs()
             if(!visitei(matriz))
             {
                 Node *novo = new Node(matriz, atual);
-
                 pilha.push(novo);
             }
         }
@@ -276,13 +267,11 @@ void busca_gulosa()
 {
     priority_queue<pino, vector<pino>, greater<pino>> fila;
     Node *origem = new Node(heur(inicial), inicial, NULL, 0);
-
     fila.push({origem->h, origem});
 
     while(!fila.empty())
     {
         Node *atual = fila.top().s;
-
         fila.pop();
 
         if(visitei(atual->estado)) continue;
